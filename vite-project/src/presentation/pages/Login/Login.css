@@ -1,0 +1,22 @@
+
+.background-login {
+    background-image: url('/background-login.gif');
+    background-size: cover;
+    background-position: center;
+    justify-content: flex-start;
+    height: 100vh;
+    width: 100vw;
+  }
+  
+  .buttonLogin{
+    background-color: #FFFFFF;
+    width: 50vw;
+    height: 100vh;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+  }
+  
+  .img-size {
+    width: 200px;
+    height: 200px;
+  }
