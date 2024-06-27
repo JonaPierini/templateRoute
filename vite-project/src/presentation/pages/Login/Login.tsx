@@ -1,46 +1,54 @@
 import { Navigate } from "react-router-dom";
 import { useAuthStore } from "../../../store/auth/authStore";
 import { RootRoutes } from "../../routes/def";
+import {
+  auth,
+  googleProvider,
+  signInWithPopup,
+} from "../../../firebase/firebase";
+import { useState } from "react";
+import { Loader } from "../../components/Loader/Loader";
 
 // import "./Login.css";
 
 export const Login = () => {
   const { status, login } = useAuthStore();
+  const [loading, setLoading] = useState(false);
 
   if (status === "loggedIn") {
     return <Navigate to={RootRoutes.Reports} replace />;
   }
 
-  // const handleRedirectResult = async () => {
-  //   try {
-  //     const result = await getRedirectResult(auth);
-  //     if (result) {
-  //       const token = await result.user.getIdToken();
-  //       console.log("token ", token);
-  //       if (token) {
-  //         console.log(result);
-  //       }
-  //     }
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
-
-  // useEffect(() => {
-  //   handleRedirectResult();
-  // }, []);
+  const handleRedirectResult = async (result: any) => {
+    try {
+      if (result && result.user) {
+        const token = await result.user.getIdToken();
+        const user = await result.user.email;
+        if (token && user) {
+          login(token, user);
+        }
+      }
+    } catch (error) {
+      console.error("Error handling redirect result:", error);
+    } finally {
+    }
+  };
 
   const signInWithGoogle = async () => {
-    login("123456789", "Jona");
-
-    // try {
-    //   await signInWithRedirect(auth, googleProvider);
-    // } catch (error) {
-    //   console.error("Error during Google sign-in:", error);
-    // } finally {
-    //   console.log("Finally");
-    // }
+    setLoading(true);
+    try {
+      const result = await signInWithPopup(auth, googleProvider);
+      handleRedirectResult(result);
+    } catch (error) {
+      console.error("Error during Google sign-in:", error);
+    } finally {
+      setLoading(false);
+    }
   };
+
+  if (loading) {
+    return <Loader></Loader>;
+  }
 
   return (
     <div className="background-login">

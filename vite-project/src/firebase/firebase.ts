@@ -5,6 +5,7 @@ import {
   GoogleAuthProvider,
   OAuthProvider,
   getRedirectResult,
+  signInWithPopup,
 } from "firebase/auth";
 
 // Configuración de Firebase
@@ -31,4 +32,5 @@ export {
   microsoftProvider,
   signInWithRedirect,
   getRedirectResult,
+  signInWithPopup,
 };
