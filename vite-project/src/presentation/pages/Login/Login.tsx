@@ -8,6 +8,7 @@ import {
 } from "../../../firebase/firebase";
 import { useState } from "react";
 import { Loader } from "../../components/Loader/Loader";
+import { FirebaseLoginInterface } from "../../../interface/firebase";
 
 // import "./Login.css";
 
@@ -19,13 +20,13 @@ export const Login = () => {
     return <Navigate to={RootRoutes.Reports} replace />;
   }
 
-  const handleRedirectResult = async (result: any) => {
+  const handleRedirectResult = async (result: FirebaseLoginInterface) => {
     try {
       if (result && result.user) {
         const token = await result.user.getIdToken();
-        const user = await result.user.email;
-        if (token && user) {
-          login(token, user);
+        const email = result.user.email;
+        if (token && email) {
+          login(token, email);
         }
       }
     } catch (error) {

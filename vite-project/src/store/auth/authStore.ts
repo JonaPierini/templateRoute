@@ -6,8 +6,8 @@ export type AuthStatus = "loggedIn" | "unAuthorized";
 export interface AuthState {
   status: AuthStatus;
   token?: string;
-  user?: string;
-  login: (token: string, user: string) => Promise<boolean>;
+  email?: string;
+  login: (token: string, email: string) => Promise<boolean>;
   logOut: () => Promise<void>;
 }
 
@@ -16,16 +16,16 @@ export const useAuthStore = create<AuthState>()(
     (set) => ({
       status: "unAuthorized",
       token: undefined,
-      user: undefined,
+      email: undefined,
 
-      login: async (token: string, user) => {
-        set({ status: "loggedIn", token: token, user: user });
+      login: async (token: string, email: string) => {
+        set({ status: "loggedIn", token: token, email: email });
 
         return true;
       },
 
       logOut: async () => {
-        set({ status: "unAuthorized", token: undefined, user: undefined });
+        set({ status: "unAuthorized", token: undefined, email: undefined });
       },
     }),
     {

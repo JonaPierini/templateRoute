@@ -9,9 +9,10 @@ import {
   onIdTokenChanged,
   signOut,
 } from "firebase/auth";
+import { FirebaseConfigInterface } from "../interface/firebase";
 
 // Configuración de Firebase
-const firebaseConfig = {
+const firebaseConfig: FirebaseConfigInterface = {
   apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
   authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
   projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
@@ -33,7 +34,6 @@ export {
   googleProvider,
   microsoftProvider,
   signOut,
-  getAuth,
   signInWithRedirect,
   getRedirectResult,
   signInWithPopup,
