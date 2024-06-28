@@ -6,6 +6,8 @@ import {
   OAuthProvider,
   getRedirectResult,
   signInWithPopup,
+  onIdTokenChanged,
+  signOut,
 } from "firebase/auth";
 
 // Configuración de Firebase
@@ -30,7 +32,10 @@ export {
   auth,
   googleProvider,
   microsoftProvider,
+  signOut,
+  getAuth,
   signInWithRedirect,
   getRedirectResult,
   signInWithPopup,
+  onIdTokenChanged,
 };
