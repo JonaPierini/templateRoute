@@ -12,7 +12,7 @@ export const ProtectedRoute = () => {
       onIdTokenChanged(auth, async (user) => {
         if (!user) {
           logOut();
-          console.log("El usuario ha sido deslogueado - closeeSession");
+          console.log("El usuario ha sido deslogueado");
         } else {
           try {
             const token = await user.getIdToken();
