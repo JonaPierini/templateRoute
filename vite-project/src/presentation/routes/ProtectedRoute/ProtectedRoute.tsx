@@ -16,7 +16,7 @@ export const ProtectedRoute = () => {
         } else {
           try {
             const token = await user.getIdToken();
-            console.log("Token de usuario actualizado:", token);
+            console.log("Token de usuario actualizaaado:", token);
           } catch (error) {
             console.error("Error al obtener el token:", error);
             logOut();
